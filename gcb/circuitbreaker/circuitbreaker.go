@@ -108,7 +108,6 @@ func (cb *CircuitBreaker) processOpenState() (any, error) {
 	if time.Since(cb.lastFailureTime) > cb.recoveryTime {
 		slog.Info("state transitioning to `half-open`", "state", "open")
 		cb.state = halfOpen
-		cb.halfOpenThreshold = 0
 		cb.failureCount = 0
 		return nil, nil
 	}
